@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Built Within — Harriet Taylor Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@600&family=Nunito:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a1a;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .stage {
+      width: 1920px;
+      height: 1080px;
+      position: relative;
+      transform-origin: center center;
+    }
+
+    /* ── Slides ── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      padding: 90px 120px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    /* ── Colours ── */
+    .bg-cream  { background: #F7EBE1; }
+    .bg-plum   { background: #461220; }
+    .bg-oxblood{ background: #8C2F39; }
+    .bg-peach  { background: #FED0BB; }
+
+    .c-plum    { color: #461220; }
+    .c-oxblood { color: #8C2F39; }
+    .c-crimson { color: #B23A48; }
+    .c-blush   { color: #FCB9B2; }
+    .c-peach   { color: #FED0BB; }
+    .c-cream   { color: #F7EBE1; }
+
+    /* ── Type ── */
+    .eyebrow {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      font-size: 20px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .body {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    .script {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .label {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ── Nav ── */
+    #nav {
+      position: fixed;
+      bottom: 28px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      z-index: 200;
+      pointer-events: none;
+    }
+    #nav button {
+      pointer-events: all;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      padding: 10px 28px;
+      transition: opacity 0.2s;
+      opacity: 0.55;
+    }
+    #nav button:hover { opacity: 1; }
+    #counter {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      letter-spacing: 0.12em;
+      opacity: 0.4;
+    }
+
+    /* ── Utility ── */
+    .divider {
+      width: 56px;
+      height: 2px;
+      margin: 28px 0;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+    }
+
+    .four-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px 64px;
+    }
+
+    .feature-block {
+      border-left: 2px solid #B23A48;
+      padding-left: 36px;
+    }
+
+    .dot { color: #B23A48; margin-right: 14px; font-size: 18px; }
+  </style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- ══ SLIDE 1: Cover ══ -->
+  <div class="slide bg-cream active" id="slide-1">
+
+    <div style="max-width: 980px;">
+      <p class="eyebrow c-plum" style="opacity:0.45; margin-bottom: 36px;">Built Within &nbsp;·&nbsp; Personal Proposal</p>
+      <h1 class="headline c-plum" style="font-size: 96px; margin-bottom: 52px;">
+        A programme built<br>around you.
+      </h1>
+      <p class="script c-crimson" style="font-size: 42px;">
+        "Everything you need is already built within."
+      </p>
+    </div>
+
+    <div style="position: absolute; bottom: 90px; left: 120px; right: 120px;
+                display: flex; justify-content: space-between; align-items: flex-end;">
+      <div>
+        <p class="body c-plum" style="font-size: 26px; opacity: 0.65;">Prepared for Harriet Taylor</p>
+        <p class="body c-plum" style="font-size: 20px; opacity: 0.35; margin-top: 8px;">May 2026</p>
+      </div>
+      <p class="label c-plum" style="font-size: 16px; opacity: 0.35;">@builtwithin</p>
+    </div>
+
+  </div>
+
+  <!-- ══ SLIDE 2: The Programme ══ -->
+  <div class="slide bg-plum" id="slide-2">
+
+    <p class="eyebrow c-peach" style="opacity: 0.65;">The programme</p>
+    <h2 class="headline c-peach" style="font-size: 68px; max-width: 1100px; margin-bottom: 48px;">
+      12 weeks. Three sessions per week.<br>Built entirely for you.
+    </h2>
+    <p class="body c-blush" style="font-size: 32px; max-width: 1200px; margin-bottom: 28px;">
+      Each session combines Olympic lifting with the compound movements you are already
+      confident with — your squat, hinge, and upper body work — so there is always
+      something familiar alongside what is new.
+    </p>
+    <p class="body c-blush" style="font-size: 32px; max-width: 1200px; opacity: 0.8;">
+      The Olympic lifting starts with the fundamentals and builds progressively, adding
+      weight and complexity as your confidence grows. Designed to work whether you are
+      at CrossFit17 or your other gym.
+    </p>
+
+  </div>
+
+  <!-- ══ SLIDE 3: The Two Options ══ -->
+  <div class="slide bg-cream" id="slide-3">
+
+    <p class="eyebrow c-plum" style="opacity: 0.5; margin-bottom: 40px;">Your two options</p>
+    <div class="two-col" style="align-items: stretch;">
+
+      <!-- Option A -->
+      <div style="background: #461220; padding: 64px 60px; display: flex; flex-direction: column;">
+        <p class="label c-peach" style="font-size: 16px; opacity: 0.6;">Option one</p>
+        <h3 class="headline c-peach" style="font-size: 48px; margin-top: 20px; line-height: 1.1;">Full Support</h3>
+        <p class="headline c-crimson" style="font-size: 80px; margin-top: 16px; line-height: 1;">£450</p>
+        <div class="divider" style="background: #B23A48;"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+          <p class="body c-blush" style="font-size: 28px; line-height: 1.5;"><span class="dot">·</span>12 x 1:1 sessions, one per week</p>
+          <p class="body c-blush" style="font-size: 28px; line-height: 1.5;"><span class="dot">·</span>Sessions mixable between CrossFit17 and your gym</p>
+          <p class="body c-blush" style="font-size: 28px; line-height: 1.5;"><span class="dot">·</span>Two independent sessions per week</p>
+          <p class="body c-blush" style="font-size: 28px; line-height: 1.5;"><span class="dot">·</span>Maximum accountability and fastest progression</p>
+        </div>
+      </div>
+
+      <!-- Option B -->
+      <div style="background: #FED0BB; padding: 64px 60px; display: flex; flex-direction: column;">
+        <p class="label c-plum" style="font-size: 16px; opacity: 0.55;">Option two</p>
+        <h3 class="headline c-plum" style="font-size: 48px; margin-top: 20px; line-height: 1.1;">Front-Loaded Foundation</h3>
+        <p class="headline c-crimson" style="font-size: 80px; margin-top: 16px; line-height: 1;">£280</p>
+        <div class="divider" style="background: #461220;"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+          <p class="body c-plum" style="font-size: 28px; line-height: 1.5;"><span class="dot">·</span>7 x 1:1 sessions over 12 weeks</p>
+          <p class="body c-plum" style="font-size: 28px; line-height: 1.5;"><span class="dot">·</span>Weekly in weeks 1 to 4, then weeks 6, 9, and 12</p>
+          <p class="body c-plum" style="font-size: 28px; line-height: 1.5;"><span class="dot">·</span>More independence once foundations are solid</p>
+          <p class="body c-plum" style="font-size: 28px; line-height: 1.5;"><span class="dot">·</span>Suits those who prefer to train solo</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 4: Included in Both ══ -->
+  <div class="slide bg-plum" id="slide-4">
+
+    <p class="eyebrow c-peach" style="opacity: 0.65; margin-bottom: 36px;">Included in both</p>
+    <h2 class="headline c-peach" style="font-size: 60px; max-width: 860px; margin-bottom: 52px;">
+      Every option comes with<br>the same foundations.
+    </h2>
+    <div class="four-col" style="max-width: 1600px;">
+
+      <div class="feature-block">
+        <p class="label c-blush" style="font-size: 16px; opacity: 0.7; margin-bottom: 14px;">Full Training Programme</p>
+        <p class="body c-blush" style="font-size: 28px; opacity: 0.9; line-height: 1.65;">A complete 12-week progressive programme written specifically for you. Warm-up, Olympic lifting, and accessories built around what you already do well.</p>
+      </div>
+
+      <div class="feature-block">
+        <p class="label c-blush" style="font-size: 16px; opacity: 0.7; margin-bottom: 14px;">WhatsApp Check-ins</p>
+        <p class="body c-blush" style="font-size: 28px; opacity: 0.9; line-height: 1.65;">Form video feedback between sessions. For Olympic lifting especially, this matters. It means eyes on your technique even when we are not in the same room.</p>
+      </div>
+
+      <div class="feature-block">
+        <p class="label c-blush" style="font-size: 16px; opacity: 0.7; margin-bottom: 14px;">Tendonitis Management</p>
+        <p class="body c-blush" style="font-size: 28px; opacity: 0.9; line-height: 1.65;">Your bicep tendonitis is factored into the programme from day one. Load progression on pulling movements will be managed carefully throughout.</p>
+      </div>
+
+      <div class="feature-block">
+        <p class="label c-blush" style="font-size: 16px; opacity: 0.7; margin-bottom: 14px;">Gym Flexibility</p>
+        <p class="body c-blush" style="font-size: 28px; opacity: 0.9; line-height: 1.65;">The programme works at CrossFit17 or your existing gym. You are not tied to a membership decision while we are working together.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 5: Why the Structure ══ -->
+  <div class="slide bg-oxblood" id="slide-5">
+
+    <p class="eyebrow c-blush" style="opacity: 0.65; margin-bottom: 52px;">Why the structure matters</p>
+    <p class="script c-peach" style="font-size: 62px; max-width: 1280px; margin-bottom: 56px;">
+      "Olympic lifting is one of the few disciplines where<br>bad habits formed early are genuinely difficult to undo."
+    </p>
+    <p class="body c-blush" style="font-size: 32px; max-width: 1100px; line-height: 1.7; opacity: 0.9;">
+      That is why both options include consistent 1:1 sessions from the start. Not for motivation alone,
+      but because technique requires an experienced eye. If the early weeks build correctly, the rest of
+      the programme compounds on something solid.
+    </p>
+
+  </div>
+
+  <!-- ══ SLIDE 6: CTA ══ -->
+  <div class="slide bg-cream" id="slide-6">
+
+    <div style="max-width: 960px;">
+      <p class="eyebrow c-plum" style="opacity: 0.4; margin-bottom: 40px;">Next steps</p>
+      <h2 class="headline c-plum" style="font-size: 80px; margin-bottom: 48px; line-height: 1.15;">
+        No pressure.<br>Just a conversation.
+      </h2>
+      <p class="body c-plum" style="font-size: 32px; line-height: 1.7; max-width: 840px; opacity: 0.8;">
+        If you have questions about either option, or want to talk through what would suit
+        you best, just get in touch. There is no wrong answer here.
+      </p>
+    </div>
+
+    <div style="position: absolute; bottom: 90px; left: 120px; right: 120px;
+                display: flex; justify-content: space-between; align-items: flex-end;">
+      <div>
+        <p class="label c-crimson" style="font-size: 22px; margin-bottom: 12px;">@builtwithin</p>
+        <p class="body c-plum" style="font-size: 22px; opacity: 0.4;">Olivia Purseglove</p>
+      </div>
+      <p class="script c-plum" style="font-size: 32px; opacity: 0.3; text-align: right; line-height: 1.4;">
+        "Everything you need is<br>already built within."
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div id="nav">
+  <button id="btn-prev" onclick="go(-1)">&#8592;</button>
+  <span id="counter">1 / 6</span>
+  <button id="btn-next" onclick="go(1)">&#8594;</button>
+</div>
+
+<script>
+  const TOTAL = 6;
+  let cur = 1;
+
+  const darkSlides = new Set([2, 4, 5]);
+
+  function scaleStage() {
+    const sx = window.innerWidth  / 1920;
+    const sy = window.innerHeight / 1080;
+    const s  = Math.min(sx, sy);
+    document.getElementById('stage').style.transform = 'scale(' + s + ')';
+  }
+
+  function updateNav() {
+    document.getElementById('counter').textContent = cur + ' / ' + TOTAL;
+    const dark = darkSlides.has(cur);
+    const col  = dark ? '#FCB9B2' : '#461220';
+    ['btn-prev','btn-next','counter'].forEach(id => {
+      document.getElementById(id).style.color = col;
+    });
+  }
+
+  function go(dir) {
+    const prev = cur;
+    cur = Math.max(1, Math.min(TOTAL, cur + dir));
+    if (cur === prev) return;
+
+    const leaving = document.getElementById('slide-' + prev);
+    const entering = document.getElementById('slide-' + cur);
+
+    leaving.style.opacity = '0';
+    setTimeout(() => { leaving.classList.remove('active'); }, 500);
+
+    entering.classList.add('active');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => { entering.style.opacity = '1'; });
+    });
+
+    updateNav();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+
+  window.addEventListener('resize', scaleStage);
+  scaleStage();
+  updateNav();
+</script>
+</body>
+</html>
