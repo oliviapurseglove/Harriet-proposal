@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Built Within — Harriet Taylor · Welcome</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@600&family=Nunito:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a1a;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .stage {
+      width: 1920px;
+      height: 1080px;
+      position: relative;
+      transform-origin: center center;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      padding: 90px 120px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .slide.active { display: flex; opacity: 1; }
+
+    .bg-cream   { background: #F7EBE1; }
+    .bg-plum    { background: #461220; }
+    .bg-oxblood { background: #8C2F39; }
+    .bg-peach   { background: #FED0BB; }
+
+    .c-plum    { color: #461220; }
+    .c-crimson { color: #B23A48; }
+    .c-blush   { color: #FCB9B2; }
+    .c-peach   { color: #FED0BB; }
+    .c-cream   { color: #F7EBE1; }
+
+    .eyebrow {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      font-size: 20px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+    .body {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+    .script {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .label {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    #nav {
+      position: fixed;
+      bottom: 28px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      z-index: 200;
+      pointer-events: none;
+    }
+    #nav button {
+      pointer-events: all;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      font-size: 22px;
+      padding: 10px 28px;
+      transition: opacity 0.2s;
+      opacity: 0.55;
+    }
+    #nav button:hover { opacity: 1; }
+    #counter {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      letter-spacing: 0.12em;
+      opacity: 0.4;
+    }
+
+    /* ── Roadmap ── */
+    .roadmap {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1680px;
+    }
+
+    .step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .step-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid #B23A48;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 34px;
+      color: #B23A48;
+      margin-bottom: 22px;
+      flex-shrink: 0;
+    }
+
+    .step-label {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FCB9B2;
+      opacity: 0.75;
+      margin-bottom: 14px;
+    }
+
+    .step-desc {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+      font-size: 23px;
+      line-height: 1.6;
+      color: #FCB9B2;
+      opacity: 0.8;
+    }
+
+    .connector {
+      flex: 0 0 24px;
+      height: 1px;
+      background: rgba(252, 185, 178, 0.2);
+      margin-top: 36px;
+    }
+
+    /* ── Action blocks ── */
+    .action-block {
+      border-left: 3px solid #B23A48;
+      padding-left: 44px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- ══ SLIDE 1: Welcome ══ -->
+  <div class="slide bg-cream active" id="slide-1">
+
+    <div style="max-width: 1040px;">
+      <p class="eyebrow c-plum" style="opacity: 0.45; margin-bottom: 40px;">Built Within &nbsp;·&nbsp; Welcome</p>
+      <h1 class="headline c-plum" style="font-size: 100px; margin-bottom: 52px; line-height: 1.05;">
+        Welcome, Harriet.
+      </h1>
+      <p class="body c-plum" style="font-size: 33px; line-height: 1.72; opacity: 0.82; max-width: 960px;">
+        You've put 10 years into your training. What we're building over the next 12 weeks takes that foundation and adds the piece that's been missing: confidence in the Olympic lifts, a body you understand and trust, and a programme designed around how you actually train. I'm really glad you're here.
+      </p>
+    </div>
+
+    <div style="position: absolute; bottom: 90px; left: 120px; right: 120px;
+                display: flex; justify-content: space-between; align-items: flex-end;">
+      <p class="script c-crimson" style="font-size: 36px; opacity: 0.75;">
+        "Everything you need is already built within."
+      </p>
+      <p class="label c-plum" style="font-size: 15px; opacity: 0.3;">@builtwithin</p>
+    </div>
+
+  </div>
+
+  <!-- ══ SLIDE 2: Next Steps ══ -->
+  <div class="slide bg-plum" id="slide-2">
+
+    <p class="eyebrow c-peach" style="opacity: 0.65; margin-bottom: 20px;">Your next steps</p>
+    <h2 class="headline c-peach" style="font-size: 62px; margin-bottom: 56px;">Here is how we get started.</h2>
+
+    <div class="roadmap">
+
+      <div class="step">
+        <div class="step-circle">1</div>
+        <p class="step-label">Book session 1</p>
+        <p class="step-desc">Send your availability for next week and we will get the first session in the diary.</p>
+      </div>
+
+      <div class="connector"></div>
+
+      <div class="step">
+        <div class="step-circle">2</div>
+        <p class="step-label">Payment</p>
+        <p class="step-desc">Send £280 via bank transfer using the details already shared in your DMs.</p>
+      </div>
+
+      <div class="connector"></div>
+
+      <div class="step">
+        <div class="step-circle">3</div>
+        <p class="step-label">Questionnaire</p>
+        <p class="step-desc">A short training and psychology questionnaire, around 10 minutes, so I understand you properly before we start.</p>
+      </div>
+
+      <div class="connector"></div>
+
+      <div class="step">
+        <div class="step-circle">4</div>
+        <p class="step-label">Programme outline</p>
+        <p class="step-desc">You will receive a 12-week overview so you know what to expect and can come to session 1 with questions.</p>
+      </div>
+
+      <div class="connector"></div>
+
+      <div class="step">
+        <div class="step-circle">5</div>
+        <p class="step-label">Plan finalised</p>
+        <p class="step-desc">After session 1, the full detailed programme is written around what I observe in person. That is what makes it specific to you.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ══ SLIDE 3: About the Plan ══ -->
+  <div class="slide bg-oxblood" id="slide-3">
+
+    <p class="eyebrow c-blush" style="opacity: 0.65; margin-bottom: 48px;">About your programme</p>
+    <h2 class="headline c-peach" style="font-size: 66px; max-width: 1200px; margin-bottom: 52px; line-height: 1.1;">
+      The plan is built around<br>what I actually see.
+    </h2>
+    <p class="body c-blush" style="font-size: 31px; max-width: 1140px; line-height: 1.72; opacity: 0.9; margin-bottom: 52px;">
+      You will receive a 12-week outline before session one so you have a sense of the structure and what to expect. The full detailed programme is written after that first session, once I have watched you move in person. The reason matters: a programme built on what I actually observe is a different thing entirely to one built on assumptions. That is what makes this specific to you and not just a template with your name on it.
+    </p>
+    <p class="script c-peach" style="font-size: 46px; max-width: 860px; line-height: 1.35;">
+      "The most useful thing I can do is watch before I write."
+    </p>
+
+  </div>
+
+  <!-- ══ SLIDE 4: Action ══ -->
+  <div class="slide bg-cream" id="slide-4">
+
+    <p class="eyebrow c-plum" style="opacity: 0.45; margin-bottom: 48px;">Before we begin</p>
+    <h2 class="headline c-plum" style="font-size: 78px; margin-bottom: 64px;">Two things to get us started.</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; max-width: 1500px;">
+
+      <div class="action-block">
+        <p class="label c-crimson" style="font-size: 17px; margin-bottom: 22px;">One</p>
+        <p class="headline c-plum" style="font-size: 46px; margin-bottom: 24px; line-height: 1.1;">Send your availability</p>
+        <p class="body c-plum" style="font-size: 28px; line-height: 1.65; opacity: 0.78;">
+          Let me know which days and times work for you next week and I will check the calendar and find the best slot. Ideally before 17 May while your CrossFit17 membership is still active.
+        </p>
+      </div>
+
+      <div class="action-block">
+        <p class="label c-crimson" style="font-size: 17px; margin-bottom: 22px;">Two</p>
+        <p class="headline c-plum" style="font-size: 46px; margin-bottom: 24px; line-height: 1.1;">Send payment</p>
+        <p class="body c-plum" style="font-size: 28px; line-height: 1.65; opacity: 0.78;">
+          £280 via bank transfer using the details already shared in your DMs. Once that is through, you are officially on the programme and we can get everything moving.
+        </p>
+      </div>
+
+    </div>
+
+    <div style="position: absolute; bottom: 90px; left: 120px; right: 120px;
+                display: flex; justify-content: space-between; align-items: flex-end;">
+      <p class="body c-plum" style="font-size: 22px; opacity: 0.4;">Any questions at all, just ask.</p>
+      <p class="label c-plum" style="font-size: 15px; opacity: 0.3;">@builtwithin</p>
+    </div>
+
+  </div>
+
+</div>
+
+<div id="nav">
+  <button id="btn-prev" onclick="go(-1)">&#8592;</button>
+  <span id="counter">1 / 4</span>
+  <button id="btn-next" onclick="go(1)">&#8594;</button>
+</div>
+
+<script>
+  const TOTAL = 4;
+  let cur = 1;
+  const darkSlides = new Set([2, 3]);
+
+  function scaleStage() {
+    const sx = window.innerWidth  / 1920;
+    const sy = window.innerHeight / 1080;
+    document.getElementById('stage').style.transform = 'scale(' + Math.min(sx, sy) + ')';
+  }
+
+  function updateNav() {
+    document.getElementById('counter').textContent = cur + ' / ' + TOTAL;
+    const col = darkSlides.has(cur) ? '#FCB9B2' : '#461220';
+    ['btn-prev','btn-next','counter'].forEach(id => {
+      document.getElementById(id).style.color = col;
+    });
+  }
+
+  function go(dir) {
+    const prev = cur;
+    cur = Math.max(1, Math.min(TOTAL, cur + dir));
+    if (cur === prev) return;
+    const leaving  = document.getElementById('slide-' + prev);
+    const entering = document.getElementById('slide-' + cur);
+    leaving.style.opacity = '0';
+    setTimeout(() => { leaving.classList.remove('active'); }, 500);
+    entering.classList.add('active');
+    requestAnimationFrame(() => { requestAnimationFrame(() => { entering.style.opacity = '1'; }); });
+    updateNav();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+
+  window.addEventListener('resize', scaleStage);
+  scaleStage();
+  updateNav();
+</script>
+</body>
+</html>
