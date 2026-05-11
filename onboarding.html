@@ -8,25 +8,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@600&family=Nunito:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html, body { width: 100%; height: 100%; overflow: hidden; background: #1a1a1a; }
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #461220; }
 
     /* ── Slides ── */
     .slide {
       position: fixed;
       inset: 0;
       width: 100%;
-      height: 100%;
       height: 100dvh;
-      padding: clamp(28px, 5vh, 90px) clamp(24px, 6vw, 120px);
-      padding-bottom: clamp(72px, 10vh, 100px);
+      padding: 36px 28px 100px;
+      padding-top: max(36px, env(safe-area-inset-top));
+      padding-bottom: max(100px, calc(84px + env(safe-area-inset-bottom)));
       display: none;
       flex-direction: column;
-      justify-content: center;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
       opacity: 0;
-      transition: opacity 0.4s ease;
-      overflow: hidden;
+      transition: opacity 0.35s ease;
     }
     .slide.active { display: flex; opacity: 1; }
 
@@ -34,48 +36,55 @@
     .bg-cream   { background: #F7EBE1; }
     .bg-plum    { background: #461220; }
     .bg-oxblood { background: #8C2F39; }
-
     .c-plum    { color: #461220; }
     .c-crimson { color: #B23A48; }
     .c-blush   { color: #FCB9B2; }
     .c-peach   { color: #FED0BB; }
 
-    /* ── Type ── */
+    /* ── Typography — mobile base ── */
     .eyebrow {
       font-family: 'Nunito', sans-serif;
       font-weight: 300;
-      font-size: clamp(11px, 1.2vw, 20px);
-      letter-spacing: 0.22em;
+      font-size: 10px;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      margin-bottom: clamp(14px, 2vh, 28px);
+      margin-bottom: 14px;
     }
     .headline {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 600;
-      line-height: 1.1;
+      line-height: 1.08;
     }
     .body-text {
       font-family: 'Nunito', sans-serif;
       font-weight: 400;
-      line-height: 1.7;
-      font-size: clamp(14px, 1.9vw, 33px);
+      font-size: 15px;
+      line-height: 1.75;
     }
     .script {
       font-family: 'Dancing Script', cursive;
       font-weight: 600;
-      line-height: 1.35;
+      font-size: 21px;
+      line-height: 1.4;
     }
     .label {
       font-family: 'Nunito', sans-serif;
       font-weight: 300;
-      letter-spacing: 0.2em;
+      font-size: 10px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
-    /* ── Footer row ── */
+    /* ── Headline sizes — mobile ── */
+    .hl-welcome  { font-size: 44px; margin-bottom: 20px; }
+    .hl-section  { font-size: 30px; margin-bottom: 20px; }
+    .hl-action   { font-size: 28px; margin-bottom: 16px; line-height: 1.1; }
+    .hl-sub      { font-size: 22px; margin-bottom: 14px; line-height: 1.15; }
+
+    /* ── Footer ── */
     .slide-footer {
       margin-top: auto;
-      padding-top: clamp(12px, 2vh, 28px);
+      padding-top: 28px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
@@ -88,13 +97,12 @@
       position: fixed;
       bottom: 0;
       left: 0; right: 0;
+      z-index: 200;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 8px;
-      z-index: 200;
-      padding: 12px 0;
-      padding-bottom: max(14px, env(safe-area-inset-bottom));
+      padding: 8px 0;
+      padding-bottom: max(16px, env(safe-area-inset-bottom));
       pointer-events: none;
     }
     #nav button {
@@ -102,142 +110,194 @@
       background: none;
       border: none;
       cursor: pointer;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 300;
-      font-size: clamp(20px, 2.5vw, 26px);
-      padding: 10px 24px;
-      min-width: 56px;
-      min-height: 44px;
-      transition: opacity 0.2s;
-      opacity: 0.55;
+      font-size: 24px;
+      width: 72px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.5;
+      transition: opacity 0.15s;
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
     }
-    #nav button:hover,
     #nav button:active { opacity: 1; }
     #counter {
       font-family: 'Nunito', sans-serif;
       font-weight: 300;
-      font-size: clamp(13px, 1.4vw, 17px);
-      letter-spacing: 0.12em;
-      opacity: 0.4;
-      min-width: 48px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      opacity: 0.38;
+      width: 44px;
       text-align: center;
     }
 
-    /* ── Roadmap ── */
+    /* ── Roadmap — vertical (mobile first) ── */
     .roadmap {
       display: flex;
-      align-items: flex-start;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 24px;
       width: 100%;
-      margin-top: clamp(12px, 2.5vh, 44px);
     }
     .step {
-      flex: 1;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 clamp(6px, 0.8vw, 16px);
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 14px;
     }
     .step-circle {
-      width: clamp(40px, 4.5vw, 72px);
-      height: clamp(40px, 4.5vw, 72px);
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      border: 2px solid #B23A48;
+      border: 1.5px solid #B23A48;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 600;
-      font-size: clamp(18px, 2.2vw, 34px);
+      font-size: 17px;
       color: #B23A48;
-      margin-bottom: clamp(10px, 1.5vh, 22px);
       flex-shrink: 0;
     }
+    .step-content { flex: 1; padding-top: 2px; }
     .step-label {
       font-family: 'Nunito', sans-serif;
       font-weight: 300;
-      font-size: clamp(9px, 0.9vw, 15px);
-      letter-spacing: 0.15em;
+      font-size: 9px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: #FCB9B2;
-      opacity: 0.75;
-      margin-bottom: clamp(6px, 1vh, 14px);
+      opacity: 0.7;
+      margin-bottom: 5px;
     }
     .step-desc {
       font-family: 'Nunito', sans-serif;
       font-weight: 400;
-      font-size: clamp(11px, 1.4vw, 23px);
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.65;
       color: #FCB9B2;
-      opacity: 0.8;
+      opacity: 0.85;
     }
-    .connector {
-      flex: 0 0 clamp(10px, 1.2vw, 24px);
-      height: 1px;
-      background: rgba(252, 185, 178, 0.2);
-      margin-top: clamp(20px, 2.2vw, 36px);
-    }
+    .connector { display: none; }
 
-    /* ── Action blocks ── */
+    /* ── Action blocks — stacked on mobile ── */
     .action-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(24px, 3.5vw, 64px);
-      margin-top: clamp(20px, 3vh, 56px);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-top: 24px;
     }
     .action-block {
-      border-left: 3px solid #B23A48;
-      padding-left: clamp(18px, 2.2vw, 44px);
+      border-left: 2px solid #B23A48;
+      padding-left: 18px;
     }
 
-    /* ── Mobile ── */
-    @media (max-width: 700px) {
+    /* ── Bank details ── */
+    .bank-details {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bank-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .bank-key {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #461220;
+      opacity: 0.4;
+      width: 72px;
+      flex-shrink: 0;
+    }
+    .bank-val {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: #461220;
+      opacity: 0.72;
+    }
+
+    /* ══════════════════════════════════════
+       DESKTOP — min-width: 768px
+    ══════════════════════════════════════ */
+    @media (min-width: 768px) {
 
       .slide {
-        justify-content: flex-start;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        overflow-y: hidden;
+        justify-content: center;
+        padding: clamp(48px, 6vh, 100px) clamp(72px, 8vw, 150px);
+        padding-bottom: clamp(88px, 10vh, 110px);
       }
 
-      /* Roadmap goes vertical */
+      .eyebrow   { font-size: clamp(11px, 1.1vw, 18px); margin-bottom: 24px; }
+      .body-text { font-size: clamp(15px, 1.7vw, 28px); }
+      .script    { font-size: clamp(22px, 3vw, 44px); }
+      .label     { font-size: clamp(11px, 1vw, 16px); }
+
+      .hl-welcome { font-size: clamp(52px, 8vw, 110px); margin-bottom: clamp(24px, 3.5vh, 56px); }
+      .hl-section { font-size: clamp(32px, 5vw, 72px);  margin-bottom: clamp(16px, 2.5vh, 40px); }
+      .hl-action  { font-size: clamp(26px, 3.8vw, 52px); }
+      .hl-sub     { font-size: clamp(22px, 3.2vw, 44px); }
+
+      /* Roadmap horizontal */
       .roadmap {
-        flex-direction: column;
-        gap: 20px;
-        margin-top: 20px;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-top: clamp(24px, 3.5vh, 56px);
+        gap: 0;
       }
       .step {
-        flex-direction: row;
-        text-align: left;
-        align-items: flex-start;
-        gap: 16px;
-        padding: 0;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0;
+        padding: 0 clamp(6px, 0.8vw, 16px);
       }
       .step-circle {
-        margin-bottom: 0;
-        width: 44px;
-        height: 44px;
-        font-size: 20px;
-        flex-shrink: 0;
+        width: clamp(44px, 4.5vw, 68px);
+        height: clamp(44px, 4.5vw, 68px);
+        font-size: clamp(18px, 2vw, 30px);
+        margin-bottom: clamp(12px, 1.5vh, 20px);
       }
-      .step-content { flex: 1; }
-      .step-label { font-size: 11px; margin-bottom: 6px; }
-      .step-desc { font-size: 14px; }
-      .connector { display: none; }
+      .step-content { flex: unset; padding-top: 0; }
+      .step-label { font-size: clamp(8px, 0.8vw, 13px); margin-bottom: 8px; }
+      .step-desc  { font-size: clamp(10px, 1.15vw, 19px); }
+      .connector {
+        display: block;
+        flex: 0 0 clamp(8px, 1vw, 20px);
+        height: 1px;
+        background: rgba(252,185,178,0.2);
+        margin-top: clamp(20px, 2.2vw, 34px);
+      }
 
-      /* Action stacks */
+      /* Two-column actions */
       .action-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(36px, 5vw, 80px);
+        margin-top: clamp(28px, 4vh, 60px);
+      }
+      .action-block {
+        padding-left: clamp(20px, 2.2vw, 44px);
+        border-left-width: 3px;
       }
 
-      /* Smaller headline on mobile */
-      .slide-headline-lg { font-size: clamp(36px, 10vw, 64px) !important; }
-      .slide-headline-md { font-size: clamp(28px, 8vw, 52px) !important; }
+      .bank-key     { font-size: clamp(9px, 0.9vw, 13px); width: clamp(76px, 8vw, 110px); }
+      .bank-val     { font-size: clamp(15px, 1.6vw, 24px); }
+      .bank-details { gap: clamp(10px, 1.2vh, 18px); margin-top: clamp(16px, 2.5vh, 32px); }
 
-      .slide-footer { display: none; }
+      #nav button { font-size: clamp(20px, 2vw, 26px); }
+      #counter    { font-size: clamp(12px, 1.2vw, 16px); }
     }
+
   </style>
 </head>
 <body>
@@ -246,18 +306,14 @@
 <div class="slide bg-cream active" id="slide-1">
 
   <p class="eyebrow c-plum" style="opacity: 0.45;">Built Within &nbsp;·&nbsp; Welcome</p>
-  <h1 class="headline c-plum slide-headline-lg" style="font-size: clamp(40px, 7.5vw, 100px); margin-bottom: clamp(20px, 3vh, 52px);">
-    Welcome, Harriet.
-  </h1>
-  <p class="body-text c-plum" style="max-width: min(960px, 100%); opacity: 0.82;">
+  <h1 class="headline c-plum hl-welcome">Welcome, Harriet.</h1>
+  <p class="body-text c-plum" style="opacity: 0.82; max-width: 640px;">
     You've put 10 years into your training. What we're building over the next 12 weeks takes that foundation and adds the piece that's been missing: confidence in the Olympic lifts, a body you understand and trust, and a programme designed around how you actually train.
   </p>
 
   <div class="slide-footer">
-    <p class="script c-crimson" style="font-size: clamp(20px, 3vw, 36px); opacity: 0.8;">
-      "Everything you need is already built within."
-    </p>
-    <p class="label c-plum" style="font-size: clamp(11px, 1.1vw, 15px); opacity: 0.3;">@builtwithin</p>
+    <p class="script c-crimson" style="opacity: 0.8;">"Everything you need is already built within."</p>
+    <p class="label c-plum" style="opacity: 0.3;">@builtwithin</p>
   </div>
 
 </div>
@@ -266,9 +322,7 @@
 <div class="slide bg-plum" id="slide-2">
 
   <p class="eyebrow c-peach" style="opacity: 0.65;">Your next steps</p>
-  <h2 class="headline c-peach slide-headline-md" style="font-size: clamp(28px, 5vw, 62px); margin-bottom: 0;">
-    Here is how we get started.
-  </h2>
+  <h2 class="headline c-peach hl-section">Here is how we get started.</h2>
 
   <div class="roadmap">
 
@@ -324,89 +378,78 @@
 
 </div>
 
-<!-- ══ SLIDE 3: About the Plan ══ -->
-<div class="slide bg-oxblood" id="slide-3">
-
-  <p class="eyebrow c-blush" style="opacity: 0.65;">About your programme</p>
-  <h2 class="headline c-peach slide-headline-md" style="font-size: clamp(28px, 5.5vw, 66px); max-width: min(1000px, 100%); margin-bottom: clamp(20px, 3.5vh, 52px);">
-    The plan is built around<br>what I actually see.
-  </h2>
-  <p class="body-text c-blush" style="max-width: min(1100px, 100%); opacity: 0.9; margin-bottom: clamp(20px, 3.5vh, 52px);">
-    You will receive a 12-week outline before session one so you have a sense of the structure and what to expect. The full detailed programme is written after that first session, once I have watched you move in person. The reason matters: a programme built on what I actually observe is a different thing entirely to one built on assumptions. That is what makes this specific to you.
-  </p>
-  <p class="script c-peach" style="font-size: clamp(20px, 3.5vw, 46px); max-width: min(860px, 100%);">
-    "The most useful thing I can do is watch before I write."
-  </p>
-
-</div>
-
-<!-- ══ SLIDE 4: The Questionnaire ══ -->
-<div class="slide bg-plum" id="slide-4">
-
-  <p class="eyebrow c-peach" style="opacity: 0.65;">Why the questionnaire matters</p>
-  <h2 class="headline c-peach slide-headline-md" style="font-size: clamp(28px, 5vw, 62px); max-width: min(1000px, 100%); margin-bottom: clamp(20px, 3.5vh, 52px);">
-    The way you think about training matters as much as the training itself.
-  </h2>
-  <p class="body-text c-blush" style="max-width: min(1100px, 100%); opacity: 0.9; margin-bottom: clamp(20px, 3vh, 44px);">
-    My dissertation looked at the psychology of sport and behaviour. One of the clearest things to come out of that research was this: the way someone trains tells you less about them than the way they think about training. How you relate to effort, how you handle the sessions that feel hard, what your relationship with your body has looked like over the years — all of that shapes what a programme needs to do and how it needs to be delivered.
-  </p>
-  <p class="body-text c-blush" style="max-width: min(1100px, 100%); opacity: 0.9;">
-    After your first session I will send you a detailed questionnaire to sit alongside my own notes. It is not admin. It is the first piece of coaching. It can be completed in sections, takes around 30 to 40 minutes in total, and it changes what I write for you.
-  </p>
-
-</div>
-
-<!-- ══ SLIDE 5: Action ══ -->
-<div class="slide bg-cream" id="slide-5">
+<!-- ══ SLIDE 3: Payment ══ -->
+<div class="slide bg-cream" id="slide-3">
 
   <p class="eyebrow c-plum" style="opacity: 0.45;">Before we begin</p>
-  <h2 class="headline c-plum slide-headline-md" style="font-size: clamp(30px, 6vw, 78px);">
-    One thing to sort before Monday.
-  </h2>
+  <h2 class="headline c-plum hl-action">One thing to sort before Monday.</h2>
+  <p class="body-text c-plum" style="opacity: 0.75; margin-bottom: 4px;">
+    £280 via bank transfer. Once that is through, you are officially on the programme.
+  </p>
 
-  <div class="action-grid">
-
-    <div class="action-block">
-      <p class="label c-crimson" style="font-size: clamp(11px, 1.2vw, 17px); margin-bottom: clamp(10px, 1.5vh, 22px);">Payment</p>
-      <p class="headline c-plum" style="font-size: clamp(22px, 3.5vw, 46px); margin-bottom: clamp(10px, 1.5vh, 24px); line-height: 1.1;">£280 via bank transfer</p>
-      <p class="body-text c-plum" style="opacity: 0.78; margin-bottom: clamp(16px, 2.5vh, 36px);">
-        Once that is through, you are officially on the programme.
-      </p>
-      <p class="body-text c-plum" style="opacity: 0.6; font-size: clamp(13px, 1.6vw, 26px); line-height: 2;">
-        Name &nbsp;&nbsp; [ACCOUNT NAME]<br>
-        Sort code &nbsp;&nbsp; [SORT CODE]<br>
-        Account &nbsp;&nbsp; [ACCOUNT NUMBER]
-      </p>
+  <div class="bank-details">
+    <div class="bank-row">
+      <span class="bank-key">Name</span>
+      <span class="bank-val">[ACCOUNT NAME]</span>
     </div>
-
-    <div class="action-block">
-      <p class="label c-crimson" style="font-size: clamp(11px, 1.2vw, 17px); margin-bottom: clamp(10px, 1.5vh, 22px);">Reference</p>
-      <p class="headline c-plum" style="font-size: clamp(22px, 3.5vw, 46px); margin-bottom: clamp(10px, 1.5vh, 24px); line-height: 1.1;">Your name</p>
-      <p class="body-text c-plum" style="opacity: 0.78;">
-        Any questions at all, just message me on WhatsApp.
-      </p>
+    <div class="bank-row">
+      <span class="bank-key">Sort code</span>
+      <span class="bank-val">[SORT CODE]</span>
     </div>
-
+    <div class="bank-row">
+      <span class="bank-key">Account</span>
+      <span class="bank-val">[ACCOUNT NUMBER]</span>
+    </div>
+    <div class="bank-row">
+      <span class="bank-key">Reference</span>
+      <span class="bank-val">Harriet Taylor</span>
+    </div>
   </div>
 
   <div class="slide-footer">
-    <p class="body-text c-plum" style="font-size: clamp(13px, 1.5vw, 22px); opacity: 0.4;">Any questions at all, just ask.</p>
-    <p class="label c-plum" style="font-size: clamp(11px, 1vw, 15px); opacity: 0.3;">@builtwithin</p>
+    <p class="body-text c-plum" style="font-size: 13px; opacity: 0.4;">Any questions, message me on WhatsApp.</p>
+    <p class="label c-plum" style="opacity: 0.3;">@builtwithin</p>
   </div>
+
+</div>
+
+<!-- ══ SLIDE 4: About the Plan ══ -->
+<div class="slide bg-oxblood" id="slide-4">
+
+  <p class="eyebrow c-blush" style="opacity: 0.65;">About your programme</p>
+  <h2 class="headline c-peach hl-section">The plan is built around what I actually see.</h2>
+  <p class="body-text c-blush" style="opacity: 0.9; margin-bottom: 24px;">
+    You will receive a 12-week outline before session one so you have a sense of the structure and what to expect. The full detailed programme is written after that first session, once I have watched you move in person. A programme built on what I actually observe is a different thing entirely to one built on assumptions. That is what makes this specific to you.
+  </p>
+  <p class="script c-peach">"The most useful thing I can do is watch before I write."</p>
+
+</div>
+
+<!-- ══ SLIDE 5: The Questionnaire ══ -->
+<div class="slide bg-plum" id="slide-5">
+
+  <p class="eyebrow c-peach" style="opacity: 0.65;">Why the questionnaire matters</p>
+  <h2 class="headline c-peach hl-section">The way you think about training matters as much as the training itself.</h2>
+  <p class="body-text c-blush" style="opacity: 0.9; margin-bottom: 18px;">
+    My dissertation looked at the psychology of sport and behaviour. One of the clearest things to come out of that research was this: the way someone trains tells you less about them than the way they think about training. How you relate to effort, how you handle the sessions that feel hard, what your relationship with your body has looked like over the years — all of that shapes what a programme needs to do and how it needs to be delivered.
+  </p>
+  <p class="body-text c-blush" style="opacity: 0.9;">
+    After your first session I will send you a detailed questionnaire to sit alongside my own notes. It is not admin. It is the first piece of coaching. It can be completed in sections, takes around 30 to 40 minutes in total, and it changes what I write for you.
+  </p>
 
 </div>
 
 <!-- ══ Nav ══ -->
 <div id="nav">
   <button id="btn-prev" onclick="go(-1)">&#8592;</button>
-  <span id="counter">1 / 4</span>
+  <span id="counter">1 / 5</span>
   <button id="btn-next" onclick="go(1)">&#8594;</button>
 </div>
 
 <script>
   const TOTAL = 5;
   let cur = 1;
-  const darkSlides = new Set([2, 3, 4]);
+  const darkSlides = new Set([2, 4, 5]);
 
   function updateNav() {
     document.getElementById('counter').textContent = cur + ' / ' + TOTAL;
@@ -425,7 +468,10 @@
     const entering = document.getElementById('slide-' + cur);
 
     leaving.style.opacity = '0';
-    setTimeout(() => { leaving.classList.remove('active'); }, 400);
+    setTimeout(() => {
+      leaving.classList.remove('active');
+      entering.scrollTop = 0;
+    }, 350);
 
     entering.classList.add('active');
     requestAnimationFrame(() => {
@@ -441,19 +487,16 @@
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
   });
 
-  /* Touch swipe */
-  let touchStartX = 0;
-  let touchStartY = 0;
+  /* Touch swipe — horizontal wins over vertical scroll */
+  let tx = 0, ty = 0;
   document.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
+    tx = e.touches[0].clientX;
+    ty = e.touches[0].clientY;
   }, { passive: true });
   document.addEventListener('touchend', e => {
-    const dx = touchStartX - e.changedTouches[0].clientX;
-    const dy = touchStartY - e.changedTouches[0].clientY;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44) {
-      go(dx > 0 ? 1 : -1);
-    }
+    const dx = tx - e.changedTouches[0].clientX;
+    const dy = ty - e.changedTouches[0].clientY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44) go(dx > 0 ? 1 : -1);
   }, { passive: true });
 
   updateNav();
